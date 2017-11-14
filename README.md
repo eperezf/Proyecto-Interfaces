@@ -9,7 +9,7 @@
 
 ## Objetivo:
 
-Crear un sistema de manejo de riego de plantaciones. Este es el proyecto final para el ramo de Diseño de Interfaces de la Universidad Adolfo Ibáñez.
+Crear un sistema de manejo de riego de plantaciones. Este es el proyecto final para el ramo de Diseño de Interfaces de la Universidad Adolfo Ibáñez. Segundo semestre 2017.
 
 ## Instalación:
 
@@ -21,7 +21,7 @@ Abrir el .ino en Arduino y subir el programa a la placa.
 
 #### Electron:
 
-Dentro de la carpeta Electron, se deben instalar los módulos de Node y recompilarlos para la versión específica de Electron. Se deben correr los siguientes comandos en el terminal, en orden, dentro de la carpeta Electron:
+Dentro de la carpeta Electron, se deben instalar los módulos de Node y recompilarlos para la versión específica de Node usada en Electron. Se deben correr los siguientes comandos en el terminal, en orden, dentro de la carpeta Electron:
 
 `npm install electron`
 
@@ -34,6 +34,8 @@ Dentro de la carpeta Electron, se deben instalar los módulos de Node y recompil
 `electron-rebuild`
 
 Luego, se podrá iniciar el programa corriendo el comando `electron .`
+
+De igual manera se subirá el ejecutable compilado para Windows (x86 y x64), Mac y Linux.
 
 ## Licencia:
 
