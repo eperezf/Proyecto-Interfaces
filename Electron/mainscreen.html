@@ -1,0 +1,45 @@
+<html>
+<head>
+  <script>window.$ = window.jQuery = require('jquery');</script>
+  <script type="text/javascript" src="js/popper.js"></script>
+  <script type="text/javascript" src="js/bootstrap.js"></script>
+
+  <link rel="stylesheet" href="css/bootstrap.css" />
+</head>
+<body>
+<nav class="navbar navbar-dark bg-dark">
+  <span class="navbar-brand mb-0 h1">PlantControl</span>
+</nav>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col bg-warning text-white border border-dark" id="statusBox">
+      <h3>Estado: <div class="inline" id="statusMessage">Conectando a sistema de control.</div></h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md bg-info text-white border border-dark">
+      <h2 class="text-center">Humedad</h2>
+      <h4 class="text-center">XX%</h4>
+    </div>
+    <div class="col-md bg-info text-white border border-dark">
+      <h2 class="text-center">Temperatura</h2>
+      <h4 class="text-center">XXºC</h4>
+    </div>
+    <div class="col-md bg-info text-white border border-dark">
+      <h2 class="text-center">Radiación</h2>
+      <h4 class="text-center">XX</h4>
+    </div>
+    <div class="col-md bg-info text-white border border-dark">
+      <h2 class="text-center">Estanque</h2>
+      <h4 class="text-center"> XX de XX m3</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col bg-success text-white border border-dark" id="alertBox">
+      <h2>Alertas: <div class="inline" id="alertMessage">No hay alertas.</div></h2>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="js/mainscreen.js"></script>
+</body>
+</html>

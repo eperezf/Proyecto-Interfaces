@@ -1,0 +1,18 @@
+{
+  "name": "ProyectoInterfaces",
+  "productName": "Proyecto Interfaces",
+  "version": "0.0.1",
+  "description": "Proyecto final para el ramo de Diseño de Interfaces en la Universidad Adolfo Ibáñez",
+  "main": "app.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron-rebuild": "^1.6.0"
+  },
+  "dependencies": {
+    "electron": "^1.8.1",
+    "jquery": "^3.2.1",
+    "serialport": "^6.0.4"
+  }
+}
