@@ -1,5 +1,6 @@
 /* jshint esversion: 6 */
 console.log("Main Screen Initialized!");
+const { remote } = require('electron')
 
 function setAlert(type, message){
   var alertType;
@@ -36,3 +37,7 @@ function setStatus(type, message){
   document.getElementById("statusBox").className = `col bg-${alertType} text-white border border-dark`;
   document.getElementById("statusMessage").textContent = message;
 }
+let menuBtn = document.getElementById('menuBtn')
+menuBtn.addEventListener('click', () => {
+  remote.getCurrentWindow().loadURL('file://' + __dirname + '/Pages/Menu/index.html')
+})
