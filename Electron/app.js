@@ -11,7 +11,7 @@ function OpenMainScreen(){
   MainScreen = new BrowserWindow({width: 800, height: 600, minWidth:800, minHeight:600, center:true, show:true, resizable:true});
 
   MainScreen.loadURL(url.format({
-    pathname: path.join(__dirname, 'mainscreen.html'),
+    pathname: path.join(__dirname, './Pages/Welcome/index.html'),
     protocol: 'file:',
     slashes: true
   }));
@@ -21,5 +21,7 @@ function OpenMainScreen(){
   });
 
 }
-
+function sayHello() {
+  console.log('hello app');
+}
 app.on('ready', OpenMainScreen);
