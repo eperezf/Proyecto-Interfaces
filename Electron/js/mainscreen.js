@@ -1,4 +1,5 @@
 /* jshint esversion: 6 */
+const ipcRenderer = require('electron').ipcRenderer;
 console.log("Main Screen Initialized!");
 const { remote } = require('electron')
 
@@ -34,9 +35,29 @@ function setStatus(type, message){
   else{
     statusType = "info";
   }
-  document.getElementById("statusBox").className = `col bg-${alertType} text-white border border-dark`;
+  document.getElementById("statusBox").className = `col bg-${statusType} text-white border border-dark`;
   document.getElementById("statusMessage").textContent = message;
 }
+
+
+ipcRenderer.on('sensor-data', (event, arg) => {
+  document.getElementById("radiacion").textContent = arg.data;
+  checkData(arg.data);
+});
+
+ipcRenderer.on('board-data', (event, arg) => {
+  setStatus(arg.type, arg.message);
+});
+
+function checkData(data){
+  if (data > 800){
+    setAlert("danger", "Radiación demasiado alta");
+  }
+  else {
+    setAlert("ok", "No hay alertas");
+  }
+}
+
 let menuBtn = document.getElementById('menuBtn')
 menuBtn.addEventListener('click', () => {
   remote.getCurrentWindow().loadURL('file://' + __dirname + '/Pages/Menu/index.html')
