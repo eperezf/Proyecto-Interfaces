@@ -17,7 +17,7 @@ function OpenMainScreen(){
     port.open();
   });
   MainScreen.loadURL(url.format({
-    pathname: path.join(__dirname, 'mainscreen.html'),
+    pathname: path.join(__dirname, './Pages/Welcome/index.html'),
     protocol: 'file:',
     slashes: true
   }));
@@ -25,6 +25,7 @@ function OpenMainScreen(){
     MainScreen = null;
   });
 }
+
 
 port.on('open', function() {
   MainScreen.webContents.send('board-data', {type: "ok", message: "Conectado al sistema"});

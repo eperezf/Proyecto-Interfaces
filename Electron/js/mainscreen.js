@@ -1,6 +1,7 @@
 /* jshint esversion: 6 */
 const ipcRenderer = require('electron').ipcRenderer;
 console.log("Main Screen Initialized!");
+const { remote } = require('electron')
 
 function setAlert(type, message){
   var alertType;
@@ -38,6 +39,7 @@ function setStatus(type, message){
   document.getElementById("statusMessage").textContent = message;
 }
 
+
 ipcRenderer.on('sensor-data', (event, arg) => {
   document.getElementById("radiacion").textContent = arg.data;
   checkData(arg.data);
@@ -55,3 +57,8 @@ function checkData(data){
     setAlert("ok", "No hay alertas");
   }
 }
+
+let menuBtn = document.getElementById('menuBtn')
+menuBtn.addEventListener('click', () => {
+  remote.getCurrentWindow().loadURL('file://' + __dirname + '/Pages/Menu/index.html')
+})
