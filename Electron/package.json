@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "electron": "^1.8.1",
+    "johnny-five": "^0.11.7",
     "jquery": "^3.2.1",
     "serialport": "^6.0.4"
   }
