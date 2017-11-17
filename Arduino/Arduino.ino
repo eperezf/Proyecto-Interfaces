@@ -1,5 +1,11 @@
-int photoport = 0;
-int photoread = 0;
+int photoPort = 0;
+int tempPort = 1;
+int humPort = 2;
+int levelPort = 3;
+int humRead = 0;
+int tempRead = 0;
+int photoRead = 0;
+int levelRead = 0;
 String incomingByte;
 
 void setup(){
@@ -8,9 +14,21 @@ void setup(){
 }
 
 void loop(){
-  photoread = analogRead(photoport);
-  Serial.println(photoread);
-  delay(100);
+  //humRead = analogRead(humPort);
+  humRead = 35;
+  //tempRead = analogRead(tempPort)
+  tempRead = 24;
+  photoRead = analogRead(photoPort);
+  //levelRead = analogRead(levelPort);
+  levelRead = 10;
+
+  Serial.print(humRead);
+  Serial.print(",");
+  Serial.print(tempRead);
+  Serial.print(",");
+  Serial.print(photoRead);
+  Serial.print(",");
+  Serial.println(levelRead);
   incomingByte = Serial.readString();
   if (incomingByte != ""){
     if (incomingByte == "L0"){
