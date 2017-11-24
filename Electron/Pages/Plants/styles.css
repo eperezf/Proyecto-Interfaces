@@ -1,0 +1,36 @@
+#plants-title {
+  margin: 20px 0px 40px;
+}
+.plant-component {
+  border: 1px solid black;
+  margin-bottom: 25px;
+}
+.component-img {
+  padding: 0px;
+}
+.component-info {
+  padding: 15px 0px 0px 0px;
+}
+.info-name {
+  padding-left: 10px;
+}
+.info-name strong {
+  display: block;
+}
+.info-name span {
+  color: gray;
+  display: block;
+  font-style: italic;
+  padding-left: 10px;
+}
+.info-body {
+  padding: 15px 0px 0px 10px;
+  font-size: 15px;
+}
+.info-body p {
+  margin-bottom: 5px;
+}
+#addPlantBtn {
+  float: right;
+  margin-bottom: 40px;
+}

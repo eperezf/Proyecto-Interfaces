@@ -1,4 +1,5 @@
-function renderNavbar(active){
+const {remote} = require('electron')
+function renderNavbar(active) {
   return new Promise((resolve, reject) => {
     let homeClass = active == 'dashboard' ? 'nav-link active' : 'nav-link'
     let plantsClass = active == 'plants' ? 'nav-link active' : 'nav-link'
@@ -25,15 +26,14 @@ function renderNavbar(active){
     navbarDiv.innerHTML = strVar
     resolve()
   })
-
 }
 function createNavbar(active) {
   renderNavbar(active).then(() => {
     let basePath = __dirname.split('Electron')[0] + 'Electron'
-    console.log(basePath);
+    console.log(basePath)
     document.getElementById('dashboardLink').addEventListener('click', () => {
       remote.getCurrentWindow().loadURL('file://' + basePath + '/mainscreen.html')
-      console.log(__dirname);
+      console.log(__dirname)
     })
     document.getElementById('plantsConfigLink').addEventListener('click', () => {
       remote.getCurrentWindow().loadURL('file://' + basePath + '/Pages/Plants/index.html')
@@ -42,5 +42,4 @@ function createNavbar(active) {
       remote.getCurrentWindow().loadURL('file://' + basePath + '/Pages/Settings/index.html')
     })
   })
-
 }

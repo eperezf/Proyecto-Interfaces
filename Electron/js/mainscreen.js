@@ -1,6 +1,5 @@
 const ipcRenderer = require('electron').ipcRenderer
 console.log('Main Screen Initialized!')
-const {remote} = require('electron')
 
 function setAlert(type, message) {
   var alertType
