@@ -4,29 +4,25 @@ window.onload = function () {
   let basePath = __dirname.split('Electron')[0] + 'Electron'
   
   let addNewPlantBtn = document.getElementById('addNewPlantBtn')
-  
+  let name = document.getElementById('plantName')
+  let scientificName = document.getElementById('plantScientificName')
+  let image = document.getElementById('plantImage')
   addNewPlantBtn.addEventListener('click', () => {
-    let name = document.getElementById('plantName').value
-    let scientificName = document.getElementById('plantScientificName').value
-    let image = document.getElementById('plantImage')
-    
     // Validation
-    if (!validateNewPlant(name, scientificName, image)) {
+    if (!validateNewPlant(name.value, scientificName.value, image)) {
       alert("Some fields are empty")
       return
     }
-    let newPlant = '\n' + name + ',' + scientificName + ',' + image.files[0].name
+    let newPlant = '\n' + name.value + ',' + scientificName.value + ',' + image.files[0].name
     
     fs.appendFile(basePath + '/txt/plants.txt', newPlant, function (err,data) {
       if (err) {
         return console.log(err);
       }
-      fs.writeFile(basePath + '/img/' + image.files[0].name, image.files[0], function (err,data) {
-        if (err) {
-          return console.log(err);
-        }
-      })
       alert('new plant saved')
+      fs.writeFile(basePath + '/img/test.png', image.files[0].getContext('2d'), {encoding: 'binary'}, function (err, data) {
+        console.log(data);
+      })
       remote
         .getCurrentWindow()
         .loadURL(
@@ -35,8 +31,8 @@ window.onload = function () {
     })
   })
 }
+
 function validateNewPlant(name, scname, image) {
-  console.log();
   if (name == '' || name == " " || name == null || name == undefined){
     return false
   }
@@ -50,4 +46,18 @@ function validateNewPlant(name, scname, image) {
     return false
   }
   return true
+}
+
+function onFileSelected(event) {
+  var selectedFile = event.target.files[0];
+  var reader = new FileReader();
+
+  var imgtag = document.getElementById("myImage");
+  imgtag.title = selectedFile.name;
+
+  reader.onload = function(event) {
+    imgtag.src = event.target.result;
+  };
+
+  reader.readAsDataURL(selectedFile);
 }
