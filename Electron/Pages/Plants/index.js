@@ -1,7 +1,6 @@
 const { remote } = require('electron')
 
 
-let menuBtn = document.getElementById('menuBtn')
 let table = document.getElementById('plantsTableBody')
 
 
@@ -26,6 +25,4 @@ for (let plant of plants) {
   table.appendChild(tr)
 }
 
-menuBtn.addEventListener('click', () => {
-  remote.getCurrentWindow().loadURL('file://' + __dirname + '/../Menu/index.html')
-})
+createNavbar('plants')
