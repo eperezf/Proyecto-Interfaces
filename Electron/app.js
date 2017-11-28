@@ -4,6 +4,9 @@ const {app, BrowserWindow, Menu, ipcMain, dialog} = require('electron');
 const path = require('path');
 const url = require('url');
 const SerialPort = require('serialport');
+const storage = require('electron-json-storage');
+const dataPath = storage.getDataPath();
+console.log(dataPath);
 var port = new SerialPort('/dev/cu.usbmodem1411', {baudRate: 9600, autoOpen: false});
 var Readline = SerialPort.parsers.Readline;
 var parser = new Readline();
@@ -65,3 +68,7 @@ function readData(){
   });
   MainScreen.webContents.send('board-data', {type: "ok", message: "Conectado"});
 }
+
+storage.set('plantData', {minHum: '200', maxHum: '500', minTemp: '10', maxTemp: '35', waterTime: '3'}, function(error) {
+  if (error) throw error;
+});
