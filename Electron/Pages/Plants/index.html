@@ -3,24 +3,22 @@
     <script>window.$ = window.jQuery = require('jquery');</script>
     <script type="text/javascript" src="../../js/popper.js"></script>
     <script type="text/javascript" src="../../js/bootstrap.js"></script>
+    <script type="text/javascript" src="../../components/navbar.js"></script>
+    <script type="text/javascript" src="../../components/plantCard.js"></script>
     <link rel="stylesheet" href="../../css/bootstrap.css" />
+    <link rel="stylesheet" href="./styles.css">
   </head>
   <body>
+  <div id="navbar"></div>
   <div class="container-fluid">
-    <h1>Plants (pasar esto a un formato bonito, no tabla)</h1>
-    <h1>las plantas estan de forma directa en un array, pasarlo a un archivo o db</h1>
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>attr_1</th>
-          <th>attr_2</th>
-        </tr>
-        <tbody id="plantsTableBody"></tbody>
-      </thead>
-    </table>
-    <button type="button" id="menuBtn">Back</button>
+    <h1 id="plants-title">Plants</h1>
+    <div class="container">
+      <div id="plants-catalog" class="row">
+      </div>
+      <hr>
+      <button id="addPlantBtn" class="btn-primary">Add new plant</button>
+      </div>
+    </div>
   </div>
   <script type="text/javascript" src="index.js"></script>
   </body>

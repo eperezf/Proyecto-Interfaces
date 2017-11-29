@@ -3,17 +3,17 @@
   <script>window.$ = window.jQuery = require('jquery');</script>
   <script type="text/javascript" src="js/popper.js"></script>
   <script type="text/javascript" src="js/bootstrap.js"></script>
+  <script type="text/javascript" src="components/navbar.js"></script>
 
   <link rel="stylesheet" href="css/bootstrap.css" />
 </head>
 <body>
-<nav class="navbar navbar-dark bg-dark">
-  <span class="navbar-brand mb-0 h1">PlantControl</span>
-</nav>
-<div class="container-fluid">
-  <div class="row">
-    <div class="col bg-warning text-white border border-dark" id="statusBox">
-      <h3>Estado: <div class="inline" id="statusMessage">Conectando a sistema de control.</div></h3>
+  <div id="navbar"></div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col bg-warning text-white border border-dark" id="statusBox">
+        <h3>Estado: <div class="inline" id="statusMessage">Conectando a sistema de control.</div></h3>
+      </div>
     </div>
   </div>
   <div class="row">

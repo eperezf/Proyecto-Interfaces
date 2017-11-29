@@ -1,0 +1,23 @@
+function renderPlantCard(plant) {
+  var strVar = ''
+  strVar += '<div class="row plant-component">'
+  strVar += '            <div class="col-md-6 component-img">'
+  strVar += '              <img'
+  strVar += '                src="' + plant.src + '"'
+  strVar += '                alt="Smiley face"'
+  strVar += '                width="100%" height="180px"'
+  strVar += '              ></div>'
+  strVar += '              <div class="col-md-6 component-info">'
+  strVar += '                <div class="info-name">'
+  strVar += '                  <strong>' + plant.name + '</strong>'
+  strVar += '                  <span>' + plant.scientificName + '</span>'
+  strVar += '                </div>'
+  strVar += '                <div class="info-body">'
+  strVar += '                  <p>Humidity: 55% - 70%</p>'
+  strVar += '                  <p>T: 13° ~ 24°</p>'
+  strVar += '                  <p>pH: 5,5 ~ 6,8</p>'
+  strVar += '                </div>'
+  strVar += '              </div>'
+  strVar += '          </div>'
+  return strVar
+}

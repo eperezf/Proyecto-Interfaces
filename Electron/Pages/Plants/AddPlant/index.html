@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <script>window.$ = window.jQuery = require('jquery');</script>
+    <script type="text/javascript" src="../../../js/popper.js"></script>
+    <script type="text/javascript" src="../../../js/bootstrap.js"></script>
+    <script type="text/javascript" src="../../../components/navbar.js"></script>
+    <script type="text/javascript" src="./index.js"></script>
+    <link rel="stylesheet" href="../../../css/bootstrap.css" />
+    <link rel="stylesheet" href="./styles.css" />
+
+  </head>
+  <body>
+    <div class="container-fluid">
+      <h1 id="newPlantTitle">Add New Plant</h1>
+      <div class="container">
+        <form id="addPlantForm">
+          <div class="form-group row">
+            <label class="col-2 col-form-label">Name</label>
+            <div class="col-10">
+              <input id="plantName" class="form-control" type="text" placeholder="Tomato" required>
+            </div>
+          </div>
+          <hr>
+          <div class="form-group row">
+            <label class="col-2 col-form-label">Scientific Name</label>
+            <div class="col-10">
+              <input id="plantScientificName" required class="form-control" type="text" placeholder="Solanum lycopersicum">
+            </div>
+          </div>
+          <hr>
+          <div class="form-group row">
+            <label class="col-2 col-form-label">File input</label>
+            <div class="col-md-6">
+              <input id="plantImage" type="file" class="form-control-file" required>
+            </div>
+            <div class="col-md-4">
+              <img id="myimage" width="90px">
+            </div>
+          </div>
+          <hr>
+        </form>
+        <button class="btn-primary" id="addNewPlantBtn">Add New Plant</button>
+      </div>
+    </div>
+  </body>

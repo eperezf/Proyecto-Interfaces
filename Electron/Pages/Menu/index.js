@@ -1,5 +1,3 @@
-const { remote } = require('electron')
-
 let dashboardBtn = document.getElementById('dashboardBtn')
 let plantsBtn = document.getElementById('plantsBtn')
 let settingsBtn = document.getElementById('settingsBtn')
