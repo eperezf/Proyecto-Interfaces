@@ -1,3 +1,4 @@
+/* jshint esversion: 6 */
 const ipcRenderer = require('electron').ipcRenderer
 console.log('Main Screen Initialized!')
 
@@ -36,7 +37,10 @@ function setStatus(type, message) {
 }
 
 ipcRenderer.on('sensor-data', (event, arg) => {
-  document.getElementById('radiacion').textContent = arg.data
+  document.getElementById('humedad').textContent = arg.humedad + '%'
+  document.getElementById('temperatura').textContent = arg.temperatura + 'ºC'
+  document.getElementById('radiacion').textContent = arg.radiacion
+  document.getElementById('nivelEstanque').textContent = arg.nivelEstanque + ' de XX m3'
   checkData(arg.data)
 })
 

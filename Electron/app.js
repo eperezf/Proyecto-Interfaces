@@ -10,6 +10,12 @@ var parser = new Readline();
 port.pipe(parser);
 let MainScreen;
 
+var dataArray;
+var humedad;
+var temperatura;
+var radiacion;
+var nivelEstanque;
+
 function OpenMainScreen(){
   MainScreen = new BrowserWindow({width: 800, height: 600, minWidth:800, minHeight:600, center:true, show:false, resizable:true});
   MainScreen.once('ready-to-show', () => {
@@ -43,13 +49,19 @@ app.on('ready', OpenMainScreen);
 
 function readData(){
   parser.on('data', function(data){
-    console.log(data);
-    MainScreen.webContents.send('sensor-data', {data: data});
-    if (data < 800){
+    MainScreen.webContents.send('board-data', {type: "ok", message: "Leyendo datos"});
+    dataArray = data.split(",");
+    humedad = dataArray[0];
+    temperatura = dataArray[1];
+    radiacion = dataArray[2];
+    nivelEstanque = dataArray[3];
+    MainScreen.webContents.send('sensor-data', {humedad: humedad, temperatura: temperatura, radiacion: radiacion, nivelEstanque: nivelEstanque});
+    if (radiacion < 800){
       port.write('L0');
     }
     else {
       port.write('L1');
     }
   });
+  MainScreen.webContents.send('board-data', {type: "ok", message: "Conectado"});
 }
