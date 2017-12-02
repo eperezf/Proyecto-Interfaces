@@ -1,6 +1,2 @@
 Peashooter,Pisum sativum,peashooter.png
 Sunflower,Helianthus annuus,sunflower.png
-
-qqq,aaa,peashooter.png
-aaa,aaa,peashooter.png
-aaa,aaa,peashooter.png
