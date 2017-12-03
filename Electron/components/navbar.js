@@ -8,7 +8,7 @@ function renderNavbar(active) {
     strVar += '<nav class="navbar navbar-expand navbar-dark bg-dark">'
     strVar += '    <span class="navbar-brand mb-0 h1">PlantControl</span>'
     strVar += '    <ul class="navbar-nav mr-auto">'
-    strVar += '      <li class="nav-item active" id="dashboardLink">'
+    strVar += '      <li class="nav-item" id="dashboardLink">'
     strVar += '        <a class="' + homeClass + '" href="#">Dashboard</a>'
     strVar += '      </li>'
     strVar += '      <li class="nav-item" id="plantsConfigLink">'
