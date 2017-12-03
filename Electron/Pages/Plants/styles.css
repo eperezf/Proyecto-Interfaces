@@ -3,7 +3,7 @@
 }
 .plant-component {
   border: 1px solid black;
-  margin-bottom: 25px;
+  padding: 15px 0px 25px;
 }
 .component-img {
   padding: 0px;
@@ -33,4 +33,7 @@
 #addPlantBtn {
   float: right;
   margin-bottom: 40px;
+}
+.selected {
+  background-color: #c2c2ec;
 }

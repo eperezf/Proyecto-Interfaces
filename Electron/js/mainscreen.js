@@ -1,5 +1,6 @@
 /* jshint esversion: 6 */
 const ipcRenderer = require('electron').ipcRenderer
+const fs = require('fs')
 console.log('Main Screen Initialized!')
 
 function setAlert(type, message) {
@@ -57,3 +58,24 @@ function checkData(data) {
 }
 
 createNavbar('dashboard')
+
+window.onload = async function() {
+  var plant
+  let basePath = __dirname.split('Electron')[0] + 'Electron'
+  await fs.readFile(basePath + '/txt/selectedPlant.txt', 'utf8', function(err, data) {
+    data = data.split(',')
+    console.log(data)
+    plant = {
+      name: data[0],
+      scName: data[1],
+      minH: data[2],
+      maxH: data[3],
+      minT: data[4],
+      maxT: data[5],
+      minL: data[6],
+      maxL: data[7]
+    }
+    // CREAR ALERTAS ACAAAAA
+    console.log(plant)
+  })
+}
