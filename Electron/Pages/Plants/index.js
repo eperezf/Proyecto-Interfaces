@@ -6,7 +6,7 @@ let basePath = __dirname.split('Electron')[0] + 'Electron'
 let plants = []
 let selectedPlant
 fs.readFile(basePath + '/txt/selectedPlant.txt', 'utf8', function(err, data) {
-  selectedPlant = data
+  selectedPlant = data.split(',')[0]
 })
 fs.readFile(basePath + '/txt/plants.txt', 'utf8', function(err, data) {
   if (err) {
@@ -18,7 +18,13 @@ fs.readFile(basePath + '/txt/plants.txt', 'utf8', function(err, data) {
     plants.push({
       name: plant[0],
       scientificName: plant[1],
-      src: basePath + '/img/' + plant[2]
+      minH: plant[2],
+      maxH: plant[3],
+      minT: plant[4],
+      maxT: plant[5],
+      minUv: plant[6],
+      maxUv: plant[7],
+      src: basePath + '/img/' + plant[8]
     })
   }
   plants.map(plant => {

@@ -13,17 +13,24 @@ window.onload = async function() {
       option.text = plant
       selectedPlantSelect.appendChild(option)
     }
-    selectedPlantSelect.value = 'Sunflower'
+    fs.readFile(basePath + '/txt/selectedPlant.txt', 'utf8', function(err, data) {
+      selectedPlantSelect.value = data.split(',')[0]
+    })
     selectedPlantSelect.addEventListener('change', () => {
       saveBtn.className = 'btn btn-primary'
       saveBtn.addEventListener('click', () => {
-        fs.writeFile(basePath + '/txt/selectedPlant.txt', selectedPlantSelect.value, function() {
-          remote
-            .getCurrentWindow()
-            .loadURL(
-              'file://' + __dirname.split('Electron')[0] + 'Electron/Pages/Settings/index.html'
-            )
-        })
+        for (let plant of data) {
+          if (plant.split(',')[0] == selectedPlantSelect.value) {
+            fs.writeFile(basePath + '/txt/selectedPlant.txt', plant, function() {
+              remote
+                .getCurrentWindow()
+                .loadURL(
+                  'file://' + __dirname.split('Electron')[0] + 'Electron/Pages/Settings/index.html'
+                )
+            })
+            break
+          }
+        }
       })
     })
   })

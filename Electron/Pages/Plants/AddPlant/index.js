@@ -11,8 +11,8 @@ window.onload = function() {
   let plantMaxHumidity = document.getElementById('plantMaxHumidity')
   let plantMinTemperature = document.getElementById('plantMinTemperature')
   let plantMaxTemperature = document.getElementById('plantMaxTemperature')
-  let plantMinPh = document.getElementById('plantMinPh')
-  let plantMaxPh = document.getElementById('plantMaxPh')
+  let plantMinUv = document.getElementById('plantMinUv')
+  let plantMaxUv = document.getElementById('plantMaxUv')
   let image = document.getElementById('plantImage')
 
   addNewPlantBtn.addEventListener('click', () => {
@@ -30,8 +30,8 @@ window.onload = function() {
             max: plantMaxTemperature.value
           },
           {
-            min: plantMinPh.value,
-            max: plantMaxPh.value
+            min: plantMinUv.value,
+            max: plantMaxUv.value
           }
         ],
         image
@@ -54,24 +54,16 @@ window.onload = function() {
       ',' +
       plantMaxTemperature.value +
       ',' +
-      plantMinPh.value +
+      plantMinUv.value +
       ',' +
-      plantMaxPh.value +
+      plantMaxUv.value +
       ',' +
       image.files[0].name
     fs.appendFile(basePath + '/txt/plants.txt', newPlant, function(err, data) {
       if (err) {
         return console.log(err)
       }
-      alert('new plant saved')
-      // fs.writeFile(
-      //   basePath + '/img/test.png',
-      //   image.files[0].getContext('2d'),
-      //   {encoding: 'binary'},
-      //   function(err, data) {
-      //     console.log(data)
-      //   }
-      // )
+      alert('new plant saved, please import img to img dir with same name')
       remote
         .getCurrentWindow()
         .loadURL('file://' + __dirname.split('Electron')[0] + 'Electron/Pages/Plants/index.html')
@@ -92,15 +84,11 @@ function validateNewPlant(textArray, numberPairArray, image) {
     }
   }
   for (let pair of numberPairArray) {
-    console.log(pair)
     if (pair.min == '' || pair.min == ' ' || pair.min == null || pair.min == undefined) {
-      console.log(pair.min)
-      console.log('e')
       return false
     }
     if (pair.max == '' || pair.max == ' ' || pair.max == null || pair.max == undefined) {
       console.log(pair.max)
-      console.log('j')
       return false
     }
     if (parseFloat(pair.min) >= parseFloat(pair.max)) {
