@@ -1,1 +1,1 @@
-Peashooter,Pisum sativum,2,3,4,5,6,7,peashooter.png
+Planta Nueva,Plantus nuevus,30,60,4,5,6,7,sunflower.png

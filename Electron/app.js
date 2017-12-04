@@ -56,16 +56,18 @@ function readData(){
     radiacion = dataArray[2];
     nivelEstanque = dataArray[3];
     MainScreen.webContents.send('sensor-data', {humedad: humedad, temperatura: temperatura, radiacion: radiacion, nivelEstanque: nivelEstanque});
-    if (radiacion < 800){
-      port.write('L0');
-    }
-    else {
-      port.write('L1');
-    }
   });
   MainScreen.webContents.send('board-data', {type: "ok", message: "Conectado"});
+
 }
 
 ipcMain.on('alerta', (event, data) => {
-  port.write('L1');
+  if (data == "humedad-alta"){
+    console.log("Desactivando Relay!");
+    port.write("L0");
+  }
+  if (data == "humedad-baja"){
+    console.log("Activando Relay!");
+    port.write('L1');
+  }
 });

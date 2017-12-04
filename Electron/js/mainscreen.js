@@ -79,26 +79,31 @@ function checkData(data, plant) {
   var rbox = document.getElementById('radiacionBox')
   var error = false
   if (data.humedad < plant.minH) {
-    ipcRenderer.send('alerta', 'humedad');
+    ipcRenderer.send('alerta', 'humedad-baja');
     setAlert('danger', date + ' Humedad demasiado baja')
+    console.log("Humedad bajo el minimo");
     error = true
   }
   if (data.humedad > plant.maxH) {
     hbox.classList.add('bg-danger')
     hbox.classList.remove('bg-info')
     setAlert('danger', date + ' Humedad demasiado alta')
+    ipcRenderer.send('alerta', 'humedad-alta');
+    console.log("Humedad sobre el maximo");
     error = true
   }
   if (data.temperatura < plant.minT) {
     tbox.classList.add('bg-danger')
     tbox.classList.remove('bg-info')
     setAlert('danger', date + ' Temperatura demasiado baja')
+    console.log("temp bajo el minimo");
     error = true
   }
   if (data.temperatura > plant.maxT) {
     tbox.classList.add('bg-danger')
     tbox.classList.remove('bg-info')
     setAlert('danger', date + ' Temperatura demasiado alta')
+    console.log("Humedad sobre el maximo");
     error = true
   }
   if (data.radiacion < plant.minL) {
