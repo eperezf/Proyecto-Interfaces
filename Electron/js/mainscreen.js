@@ -2,7 +2,7 @@
 const ipcRenderer = require('electron').ipcRenderer
 const fs = require('fs')
 console.log('Main Screen Initialized!')
-var plant;
+var plant
 
 function setAlert(type, message) {
   var alertType
@@ -45,7 +45,8 @@ function setStatus(type, message) {
 }
 
 ipcRenderer.on('sensor-data', (event, arg) => {
-  fs.readFile('./txt/selectedPlant.txt', 'utf8', function(err, data) {
+  let basePath = __dirname.split('Electron')[0] + 'Electron'
+  fs.readFile(basePath + '/txt/selectedPlant.txt', 'utf8', function(err, data) {
     data = data.split(',')
     plant = {
       name: data[0],
@@ -73,27 +74,54 @@ ipcRenderer.on('board-data', (event, arg) => {
 
 function checkData(data, plant) {
   var date = new Date().toLocaleDateString()
+  var tbox = document.getElementById('temperatura')
+  var hbox = document.getElementById('humedadBox')
+  var rbox = document.getElementById('radiacionBox')
+  var error = false
   if (data.humedad < plant.minH) {
     ipcRenderer.send('alerta', 'humedad');
     setAlert('danger', date + ' Humedad demasiado baja')
-  } else if (data.humedad > plant.maxH) {
+    error = true
+  }
+  if (data.humedad > plant.maxH) {
+    hbox.classList.add('bg-danger')
+    hbox.classList.remove('bg-info')
     setAlert('danger', date + ' Humedad demasiado alta')
-  } else if (data.temperatura < plant.minT) {
+    error = true
+  }
+  if (data.temperatura < plant.minT) {
+    tbox.classList.add('bg-danger')
+    tbox.classList.remove('bg-info')
     setAlert('danger', date + ' Temperatura demasiado baja')
-  } else if (data.temperatura > plant.maxT) {
+    error = true
+  }
+  if (data.temperatura > plant.maxT) {
+    tbox.classList.add('bg-danger')
+    tbox.classList.remove('bg-info')
     setAlert('danger', date + ' Temperatura demasiado alta')
-  } else if (data.radiacion < plant.minL) {
+    error = true
+  }
+  if (data.radiacion < plant.minL) {
+    rbox.classList.add('bg-danger')
+    rbox.classList.remove('bg-info')
     setAlert('danger', date + ' Radiación demasiado baja')
-  } else if (data.radiacion > plant.maxL) {
+    error = true
+  }
+  if (data.radiacion > plant.maxL) {
+    rbox.classList.add('bg-danger')
+    rbox.classList.remove('bg-info')
     setAlert('danger', date + ' Radiación demasiado alta')
-  } else {
+    error = true
+  }
+  if (error) {
+    hbox.classList.add('bg-info')
+    hbox.classList.remove('bg-danger')
+    tbox.classList.add('bg-info')
+    tbox.classList.remove('bg-danger')
+    rbox.classList.add('bg-info')
+    rbox.classList.remove('bg-danger')
     setAlert('ok', 'No hay alertas')
   }
 }
 
 createNavbar('dashboard')
-
-window.onload = async function() {
-  var plant
-  let basePath = __dirname.split('Electron')[0] + 'Electron'
-}
