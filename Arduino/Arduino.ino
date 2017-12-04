@@ -55,5 +55,6 @@ int readhum()
   delay(10);//wait 10 milliseconds
   int val = analogRead(humPort);//Read the SIG value form sensor
   digitalWrite(soilPower, LOW);//turn D7 "Off"
+  val = map(val,450,650,10,80);
   return val;//send current moisture value
 }

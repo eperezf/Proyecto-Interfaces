@@ -65,3 +65,7 @@ function readData(){
   });
   MainScreen.webContents.send('board-data', {type: "ok", message: "Conectado"});
 }
+
+ipcMain.on('alerta', (event, data) => {
+  port.write('L1');
+});

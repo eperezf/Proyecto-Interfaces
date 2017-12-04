@@ -74,7 +74,7 @@ ipcRenderer.on('board-data', (event, arg) => {
 function checkData(data, plant) {
   var date = new Date().toLocaleDateString()
   if (data.humedad < plant.minH) {
-    // ENVIAR DATOS PARA REGAR DESDE ACAAAA
+    ipcRenderer.send('alerta', 'humedad');
     setAlert('danger', date + ' Humedad demasiado baja')
   } else if (data.humedad > plant.maxH) {
     setAlert('danger', date + ' Humedad demasiado alta')
