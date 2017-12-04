@@ -37,7 +37,7 @@ window.onload = function() {
         image
       )
     ) {
-      alert('Some fields are empty')
+      alert('Error in validations.')
       return
     }
     let newPlant =
@@ -88,7 +88,10 @@ function validateNewPlant(textArray, numberPairArray, image) {
       return false
     }
     if (pair.max == '' || pair.max == ' ' || pair.max == null || pair.max == undefined) {
-      console.log(pair.max)
+      return false
+    }
+    if (isNaN(parseFloat(pair.min)) || isNan(parseFloat(pair.max))) {
+      alert('Not a number in number fields.')
       return false
     }
     if (parseFloat(pair.min) >= parseFloat(pair.max)) {

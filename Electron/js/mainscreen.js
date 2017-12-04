@@ -14,6 +14,12 @@ function setAlert(type, message) {
   } else {
     alertType = 'info'
   }
+  let basePath = __dirname.split('Electron')[0] + 'Electron'
+  let date = new Date().toLocaleDateString()
+  let newLine = date + ': ' + message
+  fs.appendFile(basePath + '/txt/logs.txt', newLine, function(err, data) {
+    console.log('log added')
+  })
   document.getElementById(
     'alertBox'
   ).className = `col bg-${alertType} text-white border border-dark`
@@ -38,33 +44,9 @@ function setStatus(type, message) {
 }
 
 ipcRenderer.on('sensor-data', (event, arg) => {
-  document.getElementById('humedad').textContent = arg.humedad + '%'
-  document.getElementById('temperatura').textContent = arg.temperatura + 'ºC'
-  document.getElementById('radiacion').textContent = arg.radiacion
-  document.getElementById('nivelEstanque').textContent = arg.nivelEstanque + ' de XX m3'
-  checkData(arg.data)
-})
-
-ipcRenderer.on('board-data', (event, arg) => {
-  setStatus(arg.type, arg.message)
-})
-
-function checkData(data) {
-  if (data > 800) {
-    setAlert('danger', 'Radiación demasiado alta')
-  } else {
-    setAlert('ok', 'No hay alertas')
-  }
-}
-
-createNavbar('dashboard')
-
-window.onload = async function() {
   var plant
-  let basePath = __dirname.split('Electron')[0] + 'Electron'
-  await fs.readFile(basePath + '/txt/selectedPlant.txt', 'utf8', function(err, data) {
+  fs.readFile(basePath + '/txt/selectedPlant.txt', 'utf8', function(err, data) {
     data = data.split(',')
-    console.log(data)
     plant = {
       name: data[0],
       scName: data[1],
@@ -75,7 +57,43 @@ window.onload = async function() {
       minL: data[6],
       maxL: data[7]
     }
-    // CREAR ALERTAS ACAAAAA
-    console.log(plant)
   })
+
+  document.getElementById('humedad').textContent = arg.humedad + '%'
+  document.getElementById('temperatura').textContent = arg.temperatura + 'ºC'
+  document.getElementById('radiacion').textContent = arg.radiacion
+  document.getElementById('nivelEstanque').textContent = arg.nivelEstanque + ' de XX m3'
+
+  checkData(arg, plant)
+})
+
+ipcRenderer.on('board-data', (event, arg) => {
+  setStatus(arg.type, arg.message)
+})
+
+function checkData(data, plant) {
+  var date = new Date().toLocaleDateString()
+  if (data.humedad < plant.minH) {
+    // ENVIAR DATOS PARA REGAR DESDE ACAAAA
+    setAlert('danger', date + ' Humedad demasiado baja')
+  } else if (data.humedad > plant.maxH) {
+    setAlert('danger', date + ' Humedad demasiado alta')
+  } else if (data.temperatura < plant.minT) {
+    setAlert('danger', date + ' Temperatura demasiado baja')
+  } else if (data.temperatura > plant.maxT) {
+    setAlert('danger', date + ' Temperatura demasiado alta')
+  } else if (data.radiacion < plant.minL) {
+    setAlert('danger', date + ' Radiación demasiado baja')
+  } else if (data.radiacion > plant.maxL) {
+    setAlert('danger', date + ' Radiación demasiado alta')
+  } else {
+    setAlert('ok', 'No hay alertas')
+  }
+}
+
+createNavbar('dashboard')
+
+window.onload = async function() {
+  var plant
+  let basePath = __dirname.split('Electron')[0] + 'Electron'
 }
