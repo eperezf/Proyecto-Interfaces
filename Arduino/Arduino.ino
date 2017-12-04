@@ -14,6 +14,10 @@ void setup(){
   pinMode(13, OUTPUT);
   pinMode(soilPower, OUTPUT);
   digitalWrite(soilPower, LOW);
+  pinMode(4, OUTPUT);
+  digitalWrite(4, HIGH);
+  delay(200);
+  digitalWrite(4, LOW);
 }
 
 void loop(){
@@ -37,10 +41,10 @@ void loop(){
   incomingByte = Serial.readString();
   if (incomingByte != ""){
     if (incomingByte == "L0"){
-      digitalWrite(13, LOW);
+      digitalWrite(4, LOW);
     }
     else {
-      digitalWrite(13, HIGH);
+      digitalWrite(4, HIGH);
     }
   }
 }
