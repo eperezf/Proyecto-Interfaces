@@ -2,6 +2,7 @@
 const ipcRenderer = require('electron').ipcRenderer
 const fs = require('fs')
 console.log('Main Screen Initialized!')
+var plant;
 
 function setAlert(type, message) {
   var alertType
@@ -44,8 +45,7 @@ function setStatus(type, message) {
 }
 
 ipcRenderer.on('sensor-data', (event, arg) => {
-  var plant
-  fs.readFile(basePath + '/txt/selectedPlant.txt', 'utf8', function(err, data) {
+  fs.readFile('./txt/selectedPlant.txt', 'utf8', function(err, data) {
     data = data.split(',')
     plant = {
       name: data[0],

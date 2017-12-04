@@ -4,7 +4,7 @@ const {app, BrowserWindow, Menu, ipcMain, dialog} = require('electron');
 const path = require('path');
 const url = require('url');
 const SerialPort = require('serialport');
-var port = new SerialPort('/dev/cu.usbmodem1411', {baudRate: 9600, autoOpen: false});
+var port = new SerialPort('/dev/cu.usbmodem1421', {baudRate: 9600, autoOpen: false});
 var Readline = SerialPort.parsers.Readline;
 var parser = new Readline();
 port.pipe(parser);
